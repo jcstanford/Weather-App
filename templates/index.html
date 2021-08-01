@@ -9,11 +9,14 @@
 </title>
 
 <body>
-	<section class="title">
+	<section class="title_card">
 		<div>
 			<h1>
 				Weather App
 			</h1>
+			<p>
+				What's the weather like?
+			</p>
 		</div>
 	</section>
 
@@ -27,7 +30,23 @@
 		</div>
 	</section>
 
-	
+	<section class="container">
+		<div class="box">
+			<article class="media">
+				<div class="media-left">
+					<img src='http://openweathermap.org/img/w/{{ weather.icon }}.png' alt="sky-image">
+				</div>
+				<div class="media-content">
+					<p>
+						<span class="title">{{ weather.city }}</span>
+						<br>
+						<span class="subtitle">{{ weather.temperature }} F </span>
+						<br>
+						{{ weather.description }}
+					</p>
+				</div>	
+			</article>
+
 
 
 
