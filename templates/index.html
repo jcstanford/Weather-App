@@ -22,15 +22,21 @@
 
 	<section class="weather_input">
 		<div>
-			<form>
+			<form method="POST">
 				<label for="city-name">Enter city name:</label><br/>
-				<input type="text" id="city-name"><br/>
+				<input type="text" placeholder="City name" name="city"><br/>
 				<input type="submit" value="Submit">
+				
+				<div class="notification is-danger">
+				  <button class="delete"></button>
+				  	error message
+				</div>
 			</form>
 		</div>
 	</section>
 
 	<section class="container">
+		{% for weather in weather_data %}
 		<div class="box">
 			<article class="media">
 				<div class="media-left">
@@ -40,7 +46,7 @@
 					<p>
 						<span class="city">{{ weather.city }}</span>
 						<br>
-						<span class="temp">Current temp: {{ weather.temperature }} F </span>
+						<span class="temp">Current temp: {{ weather.temperature }} °F </span>
 						<br>
 						<span class="humidity">Humidity: {{ weather.humidity }}%</span>
 						<br>
@@ -48,8 +54,9 @@
 					</p>
 				</div>	
 			</article>
-
-
+		</div>
+		{% endfor %}
+	</section>
 
 
 
