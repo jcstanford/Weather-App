@@ -82,6 +82,15 @@ def index_post():
 	return redirect(url_for('index_get'))
 
 
+@app.route('/delete/<name>')
+def delete_city(name):
+	city = City.query.filter_by(name=name).first()
+	db.session.delete(city)
+	db.session.commit()
+
+	flash(f'Successfully deleted { city.name } from database', 'is-success')
+	return redirect(url_for('index_get'))
+
 
 
 

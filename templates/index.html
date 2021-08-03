@@ -2,6 +2,7 @@
 <html>
 <head>
 	<link rel="stylesheet" href="static/style.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 </head>
 
 <title>
@@ -27,10 +28,23 @@
 				<input type="text" placeholder="City name" name="city"><br/>
 				<input type="submit" value="Submit">
 				
-				<div class="notification is-danger">
-				  <button class="delete"></button>
-				  	error message
-				</div>
+				{% with messages = get_flashed_messages(with_categories=true) %}
+				{% if messages %}
+					{% for category, message in messages %}
+						{% set message_class = 'is-success' %}
+
+					{% if category == 'error' %}
+						{% set message_class = 'is-danger' %}
+
+					{% endif %}
+
+					<div class="notification {{ message_class  }}">
+						{{ message }}
+					</div>
+
+					{% endfor %}
+				{% endif %}
+				{% endwith %}
 			</form>
 		</div>
 	</section>
@@ -52,7 +66,12 @@
 						<br>
 						{{ weather.description }}
 					</p>
-				</div>	
+				</div>
+				<div class="media-right">
+    				<a href="{{ url_for('delete_city', name=weather.city) }}">
+    					<button class="delete"></button>
+    				</a>
+  				</div>
 			</article>
 		</div>
 		{% endfor %}
